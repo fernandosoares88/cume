@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<title>Cumê</title>
+</head>
+<body>
+
+	<div th:replace="~{menu :: menu}"></div>
+
+	<div class="container">
+		<h1>Faça sua reserva!</h1>
+		<p th:if="${msg}" th:text="${msg}"></p>
+		<form th:action="@{/lunchrequests}" method="post">
+
+			<div class="switch">
+				<label> 
+					<input type="checkbox" name="confirmation"> <span class="lever"></span>
+					Confirma a solicitação?
+				</label>
+			</div>
+			<div>
+				<button class="waves-effect waves-light btn" type="submit">Adicionar</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

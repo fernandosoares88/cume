@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<title>Cumê</title>
+</head>
+<body>
+
+	<div th:replace="~{menu :: menu}"></div>
+
+	<div class="container">
+		<h1>Lista de reservas</h1>
+
+		<table class="highlight">
+
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Matrícula</th>
+					<th>Nome</th>
+					<th>Data do Almoço</th>
+					<th>Horário da Solicitação</th>
+					<!-- 					<th></th> -->
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="lr : ${lunchRequests}">
+					<td th:text="${lr.id}">1</td>
+					<td>2023140102232323</td>
+					<td>João Fulano</td>
+					<td
+						th:text="${#temporals.format(lr.lunchRequestDate, 'dd/MM/yyyy')}">25/02/2021</td>
+					<td
+						th:text="${#temporals.format(lr.dateTimeOfRequest, 'HH:mm:ss dd/MM/yyyy')}">25/02/2021</td>
+					<!-- 					<td th:text="${lr.dateTimeOfRequest}">19:00</td> -->
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+</body>
+</html>
