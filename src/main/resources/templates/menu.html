@@ -11,8 +11,9 @@
 			<ul id="nav-mobile" class="right hide-on-med-and-down">
 				<li sec:authorize="hasRole('STUDENT')"><a th:href="@{/lunchrequests/form}">Adicionar
 						Solicitação</a></li>
-				<li sec:authorize="hasAnyRole('ADMIN', 'ASAES', 'COORD')"><a th:href="@{/lunchrequests}">Solicitações</a></li>
 				<li sec:authorize="hasAnyRole('ADMIN', 'ASAES', 'COORD')"><a th:href="@{/students}">Alunos</a></li>
+				<li sec:authorize="hasRole('ADMIN')"><a th:href="@{/publicservers}">Servidores</a></li>
+				<li sec:authorize="hasAnyRole('ADMIN', 'ASAES', 'COORD')"><a th:href="@{/lunchrequests}">Solicitações</a></li>
 				<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Sair</a></li>
 			</ul>
 		</div>

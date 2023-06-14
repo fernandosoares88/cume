@@ -17,8 +17,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ifrn.laj.cume.dtos.StudentDTO;
 import ifrn.laj.cume.models.Role;
 import ifrn.laj.cume.models.Student;
+import ifrn.laj.cume.models.User;
 import ifrn.laj.cume.repositories.RoleRepository;
 import ifrn.laj.cume.repositories.StudentRepository;
+import ifrn.laj.cume.repositories.UserRepository;
 import jakarta.validation.Valid;
 
 @Controller
@@ -27,6 +29,8 @@ public class StudentController {
 	
 	@Autowired
 	private StudentRepository sr;
+	@Autowired
+	private UserRepository ur;
 	@Autowired
 	private RoleRepository rr;
 	
@@ -44,8 +48,8 @@ public class StudentController {
 			return form(studentDTO);
 		}
 		
-		Optional<Student> optStudent = sr.findByRegistration(studentDTO.getRegistration());
-		if(optStudent.isPresent()) {
+		Optional<User> optUser = ur.findByRegistration(studentDTO.getRegistration());
+		if(optUser.isPresent()) {
 			attributes.addFlashAttribute("msg", "Matrícula já cadastrada");
 			return "redirect:students/form";
 		}

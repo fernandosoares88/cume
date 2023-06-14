@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<!-- Compiled and minified JavaScript -->
+<title>Cumê</title>
+</head>
+<body>
+
+	<div th:replace="~{menu :: menu}"></div>
+
+	<div class="container">
+		<div class="row">
+			<div>
+				<h3>Editar papéis do servidor</h3>
+			</div>
+		</div>
+		<div class="row">
+			<form action="#"
+				th:action="@{/publicservers/{id}(id=${publicServer.id})}"
+				th:object="${publicServer}" method="post">
+				<input type="hidden" th:field="*{registration}">
+				<blockquote>
+					<div class="row">
+						<div class="col s2">Nome:</div>
+						<div class="col s10">
+							<span th:text="${publicServer.name}"></span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col s2">Matrícula:</div>
+						<div class="col s10">
+							<span th:text="${publicServer.registration}"></span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col s2">Papeis:</div>
+						<div class="col s10">
+							<div th:each="role : ${roles}" class="switch">
+								<div class="row">
+									<label> <input type="checkbox" th:field="*{roles}"
+										th:value="${role.id}" /> <span class="lever"></span> <span
+										th:text="${role.name}"></span>
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</blockquote>
+				<div class="row">
+					<div class="col">
+						<button class="btn" type="submit">Salvar</button>
+					</div>
+					<div class="col">
+						<a class="btn" th:href="@{/publicservers}">Cancelar</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- Compiled and minified JavaScript -->
+<!-- 	<script src="https://code.jquery.com/jquery-3.4.1.min.js" -->
+<!-- 		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" -->
+<!-- 		crossorigin="anonymous"></script> -->
+<!-- 	<script -->
+<!-- 		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+<!-- 	<script type="text/javascript"> -->
+		
+<!-- 	</script> -->
+</body>
+</html>

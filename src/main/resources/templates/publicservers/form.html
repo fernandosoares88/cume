@@ -13,9 +13,9 @@
 	<div th:replace="~{menu :: menu}"></div>
 
 	<div class="container">
-		<h1>Adicionar um novo aluno</h1>
+		<h1>Adicionar um novo servidor</h1>
 		<p th:if="${msg}" th:text="${msg}"></p>
-		<form th:action="@{/students}" method="post" th:object="${studentDTO}">
+		<form th:action="@{/publicservers}" method="post" th:object="${publicServerDTO}">
 
 			<div>
 				<label>Nome:</label> <input type="text" th:field="*{name}">
@@ -26,28 +26,7 @@
 					th:field="*{registration}">
 				<p th:errors="*{registration}"></p>
 			</div>
-			<div class="input-field col s12">
-				<select th:field="*{clazz}">
-					<option value="" selected>Escolha uma turma</option>
-					<option value="ADMINT1M">ADMINT1M</option>
-					<option value="ADMINT2VA">ADMINT2VA</option>
-					<option value="ADMINT2VB">ADMINT2VB</option>
-					<option value="ADMINT3M">ADMINT3M</option>
-					<option value="ADMINT4VA">ADMINT4VA</option>
-					<option value="ADMINT4VB">ADMINT4VB</option>
-					<option value="COMSUB1M">COMSUB1M</option>
-					<option value="COMSUB3V">COMSUB3V</option>
-					<option value="INFOINT1VA">INFOINT1VA</option>
-					<option value="INFOINT1VB">INFOINT1VB</option>
-					<option value="INFOINT2M">INFOINT2M</option>
-					<option value="INFOINT3VA">INFOINT3VA</option>
-					<option value="INFOINT3VB">INFOINT3VB</option>
-					<option value="INFOINT4M">INFOINT4M</option>
-					<option value="INFOSUB3M">INFOSUB3M</option>
-
-				</select> <label>Materialize Select</label>
-				<p th:errors="*{clazz}"></p>
-			</div>
+			
 			<div>
 				<button class="waves-effect waves-light btn" type="submit">Salvar</button>
 				<button class="waves-effect waves-light btn" type="reset">Limpar</button>
