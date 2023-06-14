@@ -31,7 +31,7 @@
 				<tr th:each="s : ${students}">
 					<td th:text="${s.registration}">2023140102232323</td>
 					<td th:text="${s.name}">João Fulano</td>
-					<td th:text="${s.clazz}">INFOINT3VA</td>
+					<td th:text="${s.clazz.name}">INFOINT3VA</td>
 					<!-- 					<td th:text="${lr.dateTimeOfRequest}">19:00</td> -->
 				</tr>
 			</tbody>

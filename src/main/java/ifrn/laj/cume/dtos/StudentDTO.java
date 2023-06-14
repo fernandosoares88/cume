@@ -1,6 +1,8 @@
 package ifrn.laj.cume.dtos;
 
+import ifrn.laj.cume.models.Clazz;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class StudentDTO {
 
@@ -8,8 +10,8 @@ public class StudentDTO {
 	private String registration;
 	@NotBlank
 	private String name;
-	@NotBlank
-	private String clazz;
+	@NotNull
+	private Clazz clazz;
 
 	public String getRegistration() {
 		return registration;
@@ -27,11 +29,11 @@ public class StudentDTO {
 		this.name = name;
 	}
 
-	public String getClazz() {
+	public Clazz getClazz() {
 		return clazz;
 	}
 
-	public void setClazz(String clazz) {
+	public void setClazz(Clazz clazz) {
 		this.clazz = clazz;
 	}
 

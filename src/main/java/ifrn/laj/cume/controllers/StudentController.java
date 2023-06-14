@@ -18,6 +18,7 @@ import ifrn.laj.cume.dtos.StudentDTO;
 import ifrn.laj.cume.models.Role;
 import ifrn.laj.cume.models.Student;
 import ifrn.laj.cume.models.User;
+import ifrn.laj.cume.repositories.ClazzRepository;
 import ifrn.laj.cume.repositories.RoleRepository;
 import ifrn.laj.cume.repositories.StudentRepository;
 import ifrn.laj.cume.repositories.UserRepository;
@@ -33,16 +34,20 @@ public class StudentController {
 	private UserRepository ur;
 	@Autowired
 	private RoleRepository rr;
+	@Autowired
+	private ClazzRepository cr;
 	
 	@GetMapping("/form")
 	@PreAuthorize("hasAnyRole('ADMIN', 'ASAES', 'COORD')")
-	public String form(StudentDTO studentDTO) {
-		return "students/form";
+	public ModelAndView form(StudentDTO studentDTO) {
+		ModelAndView md = new ModelAndView("students/form");
+		md.addObject("clazzs", cr.findAllByOrderByName());
+		return md;
 	}
 	
 	@PostMapping
 	@PreAuthorize("hasAnyRole('ADMIN', 'ASAES', 'COORD')")
-	public String save(@Valid StudentDTO studentDTO, BindingResult result, RedirectAttributes attributes) {
+	public ModelAndView save(@Valid StudentDTO studentDTO, BindingResult result, RedirectAttributes attributes) {
 		
 		if(result.hasErrors()) {
 			return form(studentDTO);
@@ -51,7 +56,7 @@ public class StudentController {
 		Optional<User> optUser = ur.findByRegistration(studentDTO.getRegistration());
 		if(optUser.isPresent()) {
 			attributes.addFlashAttribute("msg", "Matrícula já cadastrada");
-			return "redirect:students/form";
+			return new ModelAndView("redirect:students/form");
 		}
 		
 		Student newStudent = new Student();
@@ -69,7 +74,7 @@ public class StudentController {
 		
 		attributes.addFlashAttribute("msg", "Aluno cadastrado");
 		
-		return "redirect:students";
+		return new ModelAndView("redirect:students");
 	}
 	
 	@GetMapping
