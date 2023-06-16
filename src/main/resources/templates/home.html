@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -8,6 +9,7 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 <title>Cumê</title>
+
 <!--Let browser know website is optimized for mobile-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
@@ -18,7 +20,23 @@
 	<div class="container">
 		<h3>Reserve seu almoço!</h3>
 		<p>Esse sisteminha simples foi criado para melhorar a solicitação
-			de almoços no campus</p>
+			de almoços no campus do IFRN Lajes</p>
+
+		<blockquote>
+			<p>Se esse é seu primeiro acesso, lembre-se de alterar sua senha
+				padrão para uma mais segura.</p>
+			<p>
+				<a th:href="@{/users/changepassword}" class="btn">Alterar senha</a>
+			</p>
+		</blockquote>
+
+		<blockquote sec:authorize="hasRole('STUDENT')">
+			<p>Para fazer ou verificar sua solicitação de almoço de hoje,
+				clique no botão abaixo</p>
+			<p>
+				<a th:href="@{/lunchrequests/form}" class="btn">Solicitar Almoço</a>
+			</p>
+		</blockquote>
 	</div>
 
 	<!-- Compiled and minified JavaScript -->
