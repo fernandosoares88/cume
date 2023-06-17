@@ -16,13 +16,13 @@
 	<div th:replace="~{menu :: menu}"></div>
 
 	<div class="container">
-		<h3>Lista de reservas</h3>
+		<h3>Solicitações de almoço para hoje:</h3>
 
 		<table class="highlight">
 
 			<thead>
 				<tr>
-					<th>Id</th>
+					<th>#</th>
 					<th>Matrícula</th>
 					<th>Nome</th>
 					<th>Data do Almoço</th>
@@ -31,8 +31,8 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="lr : ${lunchRequests}">
-					<td th:text="${lr.id}">1</td>
+				<tr th:each="lr, i: ${lunchRequests}">
+					<td th:text="${i.count}">1</td>
 					<td th:text="${lr.student.registration}">2023140102232323</td>
 					<td th:text="${lr.student.name}">João Fulano</td>
 					<td

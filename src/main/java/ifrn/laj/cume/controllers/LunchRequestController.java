@@ -123,8 +123,9 @@ public class LunchRequestController {
 	@GetMapping
 	@PreAuthorize("hasAnyRole('ADMIN', 'ASAES', 'COORD')")
 	public ModelAndView lunchRequestsForToday() {
+		LocalDate today = LocalDate.now();
 		ModelAndView md = new ModelAndView("lunchrequests/list");
-		md.addObject("lunchRequests", lrr.findAll());
+		md.addObject("lunchRequests", lrr.findAllByLunchRequestDateOrderByStudentName(today));
 		return md;
 	}
 
