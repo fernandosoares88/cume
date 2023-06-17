@@ -28,26 +28,26 @@
 				<input type="hidden" th:field="*{id}">
 				<blockquote>
 					<div class="row">
-						<div class="col s3">Nome:</div>
-						<div class="col s9">
+						<div class="col s3 m2">Nome:</div>
+						<div class="col s9 m10">
 							<span th:text="${lunchRequest.student.name}"></span>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col s3">Matrícula:</div>
-						<div class="col s9">
+						<div class="col s3 m2">Matrícula:</div>
+						<div class="col s9 m10">
 							<span th:text="${lunchRequest.student.registration}"></span>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col s3">Data do Almoço:</div>
-						<div class="col s9">
+						<div class="col s3 m2">Data do Almoço:</div>
+						<div class="col s9 m10">
 							<span th:text="${#temporals.format(lunchRequest.lunchRequestDate, 'dd/MM/yyyy')}"></span>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col s3">Data da requisição:</div>
-						<div class="col s9">
+						<div class="col s3 m2">Data da requisição:</div>
+						<div class="col s9 m10">
 							<span th:text="${#temporals.format(lunchRequest.dateTimeOfRequest, 'HH:mm:ss dd/MM/yyyy')}"></span>
 						</div>
 					</div>

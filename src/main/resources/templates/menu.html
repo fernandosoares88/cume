@@ -8,20 +8,24 @@
 	<div th:fragment="menu">
 		<nav>
 			<div class="nav-wrapper container">
-				<a th:href="@{/}" class="brand-logo"><i class="large material-icons">restaurant</i> Cumê</a> <a href="#"
-					data-target="mobile-demo" class="sidenav-trigger"><i
-					class="material-icons">menu</i></a>
+				<a th:href="@{/}" class="brand-logo">
+					<i class="large material-icons">restaurant</i>
+					Cumê
+				</a>
+				<a href="#" data-target="mobile-demo" class="sidenav-trigger">
+					<i class="material-icons">menu</i>
+				</a>
 				<ul class="right hide-on-med-and-down">
 					<li sec:authorize="hasRole('STUDENT')"><a
-						th:href="@{/lunchrequests/form}">Solicitar Almoço</a></li>
+							th:href="@{/lunchrequests/form}">Solicitar Almoço</a></li>
 					<li sec:authorize="hasAnyRole('ADMIN', 'ASAES', 'COORD')"><a
-						th:href="@{/students}">Alunos</a></li>
+							th:href="@{/students}">Alunos</a></li>
 					<li sec:authorize="hasRole('ADMIN')"><a
-						th:href="@{/publicservers}">Servidores</a></li>
+							th:href="@{/publicservers}">Servidores</a></li>
 					<li sec:authorize="hasAnyRole('ADMIN', 'ASAES', 'COORD')"><a
-						th:href="@{/lunchrequests}">Solicitações</a></li>
+							th:href="@{/lunchrequests}">Solicitações</a></li>
 					<li sec:authorize="isAuthenticated()"><a
-						th:href="@{/users/changepassword}">Alterar Senha</a></li>
+							th:href="@{/users/changepassword}">Alterar Senha</a></li>
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Sair</a></li>
 				</ul>
 			</div>
@@ -29,15 +33,15 @@
 
 		<ul class="sidenav" id="mobile-demo">
 			<li sec:authorize="hasRole('STUDENT')"><a
-				th:href="@{/lunchrequests/form}">Solicitar Almoço</a></li>
+					th:href="@{/lunchrequests/form}">Solicitar Almoço</a></li>
 			<li sec:authorize="hasAnyRole('ADMIN', 'ASAES', 'COORD')"><a
-				th:href="@{/students}">Alunos</a></li>
+					th:href="@{/students}">Alunos</a></li>
 			<li sec:authorize="hasRole('ADMIN')"><a
-				th:href="@{/publicservers}">Servidores</a></li>
+					th:href="@{/publicservers}">Servidores</a></li>
 			<li sec:authorize="hasAnyRole('ADMIN', 'ASAES', 'COORD')"><a
-				th:href="@{/lunchrequests}">Solicitações</a></li>
+					th:href="@{/lunchrequests}">Solicitações</a></li>
 			<li sec:authorize="isAuthenticated()"><a
-				th:href="@{/users/changepassword}">Alterar Senha</a></li>
+					th:href="@{/users/changepassword}">Alterar Senha</a></li>
 			<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Sair</a></li>
 		</ul>
 	</div>
