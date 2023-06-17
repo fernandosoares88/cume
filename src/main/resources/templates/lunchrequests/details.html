@@ -16,42 +16,81 @@
 	<div th:replace="~{menu :: menu}"></div>
 
 	<div class="container">
-		<div class="row">
-			<div>
-				<h3>Requisição do almoço de hoje</h3>
+		<div th:if="${todayLunchRequest}">
+			<div class="row">
+				<div>
+					<h3>Requisição do almoço de hoje</h3>
+				</div>
 			</div>
-		</div>
-		<div class="row">
-			<form action="#"
-				th:action="@{/lunchrequests/{id}/cancel(id=${lunchRequest.id})}"
-				th:object="${lunchRequest}" method="post">
-				<input type="hidden" th:field="*{id}">
+			<div class="row">
 				<blockquote>
 					<div class="row">
 						<div class="col s3 m2">Nome:</div>
 						<div class="col s9 m10">
-							<span th:text="${lunchRequest.student.name}"></span>
+							<span th:text="${todayLunchRequest.student.name}"></span>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col s3 m2">Matrícula:</div>
 						<div class="col s9 m10">
-							<span th:text="${lunchRequest.student.registration}"></span>
+							<span th:text="${todayLunchRequest.student.registration}"></span>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col s3 m2">Data do Almoço:</div>
 						<div class="col s9 m10">
-							<span th:text="${#temporals.format(lunchRequest.lunchRequestDate, 'dd/MM/yyyy')}"></span>
+							<span
+								th:text="${#temporals.format(todayLunchRequest.lunchRequestDate, 'dd/MM/yyyy')}"></span>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col s3 m2">Data da requisição:</div>
 						<div class="col s9 m10">
-							<span th:text="${#temporals.format(lunchRequest.dateTimeOfRequest, 'HH:mm:ss dd/MM/yyyy')}"></span>
+							<span
+								th:text="${#temporals.format(todayLunchRequest.dateTimeOfRequest, 'HH:mm:ss dd/MM/yyyy')}"></span>
 						</div>
 					</div>
 				</blockquote>
+			</div>
+		</div>
+		<div class="row">
+			<div>
+				<h3>Requisição do almoço de amanhã</h3>
+			</div>
+		</div>
+		<div class="row">
+			<blockquote>
+				<div class="row">
+					<div class="col s3 m2">Nome:</div>
+					<div class="col s9 m10">
+						<span th:text="${lunchRequest.student.name}"></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col s3 m2">Matrícula:</div>
+					<div class="col s9 m10">
+						<span th:text="${lunchRequest.student.registration}"></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col s3 m2">Data do Almoço:</div>
+					<div class="col s9 m10">
+						<span
+							th:text="${#temporals.format(lunchRequest.lunchRequestDate, 'dd/MM/yyyy')}"></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col s3 m2">Data da requisição:</div>
+					<div class="col s9 m10">
+						<span
+							th:text="${#temporals.format(lunchRequest.dateTimeOfRequest, 'HH:mm:ss dd/MM/yyyy')}"></span>
+					</div>
+				</div>
+			</blockquote>
+			<form th:if="${canCacel}" action="#"
+				th:action="@{/lunchrequests/{id}/cancel(id=${lunchRequest.id})}"
+				th:object="${lunchRequest}" method="post">
+				<input type="hidden" th:field="*{id}">
 				<div class="row">
 					<div class="col">
 						<button class="btn" type="submit">Cancelar</button>

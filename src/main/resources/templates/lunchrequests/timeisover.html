@@ -54,21 +54,16 @@
 			</div>
 		</div>
 		<div class="row">
-			<h3>Faça sua reserva para amanhã!</h3>
-			<p th:if="${msg}" th:text="${msg}"></p>
-			<form th:action="@{/lunchrequests}" method="post">
-
-				<div class="switch">
-					<label>
-						<input type="checkbox" name="confirmation">
-						<span class="lever"></span> Confirma a solicitação?
-					</label>
-				</div>
-				<div>
-					<br>
-					<button class="waves-effect waves-light btn" type="submit">Adicionar</button>
-				</div>
-			</form>
+			<div>
+				<h3>Requisição do almoço de amanhã</h3>
+			</div>
+		</div>
+		<div class="row">
+			<blockquote>
+				<p>Não é mais possivel solicitar almoço para amanhã.</p>
+				<p>A solicitação só pode ser feita até as 16:00 horas do dia
+					anterior ao do almoço.</p>
+			</blockquote>
 		</div>
 	</div>
 	<!-- Compiled and minified JavaScript -->
