@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ifrn.laj.cume.dtos.StudentDTO;
+import ifrn.laj.cume.models.Clazz;
 import ifrn.laj.cume.models.Role;
 import ifrn.laj.cume.models.Student;
 import ifrn.laj.cume.models.User;
@@ -27,7 +28,7 @@ import jakarta.validation.Valid;
 @Controller
 @RequestMapping("/students")
 public class StudentController {
-	
+
 	@Autowired
 	private StudentRepository sr;
 	@Autowired
@@ -36,7 +37,7 @@ public class StudentController {
 	private RoleRepository rr;
 	@Autowired
 	private ClazzRepository cr;
-	
+
 	@GetMapping("/form")
 	@PreAuthorize("hasAnyRole('ADMIN', 'ASAES', 'COORD')")
 	public ModelAndView form(StudentDTO studentDTO) {
@@ -44,44 +45,55 @@ public class StudentController {
 		md.addObject("clazzs", cr.findAllByOrderByName());
 		return md;
 	}
-	
+
 	@PostMapping
 	@PreAuthorize("hasAnyRole('ADMIN', 'ASAES', 'COORD')")
 	public ModelAndView save(@Valid StudentDTO studentDTO, BindingResult result, RedirectAttributes attributes) {
-		
-		if(result.hasErrors()) {
+
+		if (result.hasErrors()) {
 			return form(studentDTO);
 		}
-		
+
 		Optional<User> optUser = ur.findByRegistration(studentDTO.getRegistration());
-		if(optUser.isPresent()) {
+		if (optUser.isPresent()) {
 			attributes.addFlashAttribute("msg", "Matrícula já cadastrada");
 			return new ModelAndView("redirect:students/form");
 		}
-		
+
 		Student newStudent = new Student();
 		newStudent.setName(studentDTO.getName());
 		newStudent.setRegistration(studentDTO.getRegistration());
 		newStudent.setClazz(studentDTO.getClazz());
 		newStudent.setPassword(new BCryptPasswordEncoder().encode("123"));
-		
+
 		Role role = rr.findByName("ROLE_STUDENT").get();
 		ArrayList<Role> roles = new ArrayList<Role>();
 		roles.add(role);
 		newStudent.setRoles(roles);
-		
+
 		sr.save(newStudent);
-		
+
 		attributes.addFlashAttribute("msg", "Aluno cadastrado");
-		
+
 		return new ModelAndView("redirect:students");
 	}
-	
+
 	@GetMapping
 	@PreAuthorize("hasAnyRole('ADMIN', 'ASAES', 'COORD')")
-	public ModelAndView list() {
+	public ModelAndView list(String nameFilter, Clazz clazzFilter) {
+		if (nameFilter == null) {
+			nameFilter = "";
+		}
+
 		ModelAndView md = new ModelAndView("students/list");
-		md.addObject("students", sr.findAllByOrderByName());
+		if (clazzFilter == null || clazzFilter.getId() == null) {
+			md.addObject("students", sr.findAllByNameContainingOrderByName(nameFilter));
+		} else {
+			md.addObject("students", sr.findAllByNameContainingAndClazzOrderByName(nameFilter, clazzFilter));
+		}
+		md.addObject("clazzs", cr.findAllByOrderByName());
+		md.addObject("clazzFilter", clazzFilter);
+		md.addObject("nameFilter", nameFilter);
 		return md;
 	}
 

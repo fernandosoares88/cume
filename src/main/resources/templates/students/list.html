@@ -18,29 +18,59 @@
 	<div class="container">
 		<h3>Lista de alunos</h3>
 
-		<a class="waves-effect waves-light btn" th:href="@{/students/form}">Novo Aluno</a>
+		<div class="row">
+			<div class="col s12 ">
+				<a class="btn waves-effect waves-light" th:href="@{/students/form}">Novo
+					Aluno</a> 
+<!-- 					<a class="btn-floating waves-effect waves-light" -->
+<!-- 					th:href="@{/students/form}"><i class="material-icons">add</i></a> -->
+			</div>
+		</div>
+		<form th:action="@{/students}">
+			<div class="row">
+				<div class="input-field col s12 m6">
+					<input id="nameFilter" type="text" name="nameFilter" th:value="${nameFilter}">
+					<label for="nameFilter">Nome</label>
+				</div>
+<!-- 				<div class="input-field col s12 m4"> -->
+<!-- 					<select name="clazzFilter.id" th:value="${clazzFilter}"> -->
+<!-- 						<option value="">Escolha uma turma</option> -->
+<!-- 						<option th:each="c : ${clazzs}" th:value="${c.id}" -->
+<!-- 							th:text="${c.name}">ADMINT1M</option> -->
+<!-- 					</select> <label>Turma</label> -->
+<!-- 				</div> -->
+				<div class="input-field col s12 m2">
+					<button class="btn waves-effect waves-light" type="submit">
+						Filtrar <i class="material-icons right">send</i>
+					</button>
+				</div>
 
-		<table class="highlight">
+			</div>
+		</form>
+		<div class="row">
+			<div class="col s12 ">
+				<table class="highlight">
 
-			<thead>
-				<tr>
-<!-- 					<th>Id</th> -->
-					<th>Matrícula</th>
-					<th>Nome</th>
-					<th>Turma</th>
-					<!-- 					<th></th> -->
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="s : ${students}">
-					<td th:text="${s.registration}">2023140102232323</td>
-					<td th:text="${s.name}">João Fulano</td>
-					<td th:text="${s.clazz.name}">INFOINT3VA</td>
-					<!-- 					<td th:text="${lr.dateTimeOfRequest}">19:00</td> -->
-				</tr>
-			</tbody>
-		</table>
-
+					<thead>
+						<tr>
+							<!-- 					<th>Id</th> -->
+							<th>Matrícula</th>
+							<th>Nome</th>
+							<th>Turma</th>
+							<!-- 					<th></th> -->
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="s : ${students}">
+							<td th:text="${s.registration}">2023140102232323</td>
+							<td th:text="${s.name}">João Fulano</td>
+							<td th:text="${s.clazz.name}">INFOINT3VA</td>
+							<!-- 					<td th:text="${lr.dateTimeOfRequest}">19:00</td> -->
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
 	<!-- Compiled and minified JavaScript -->
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -51,6 +81,9 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('.sidenav').sidenav();
+		});
+		$(document).ready(function() {
+			$('select').formSelect();
 		});
 	</script>
 </body>

@@ -19,26 +19,27 @@
 		<h3>Adicionar um novo aluno</h3>
 		<p th:if="${msg}" th:text="${msg}"></p>
 		<form th:action="@{/students}" method="post" th:object="${studentDTO}">
-
-			<div>
-				<label>Nome:</label> <input type="text" th:field="*{name}">
+			<div class="row">
+			<div class="input-field col s12">
+				<label>Nome</label> <input type="text" th:field="*{name}">
 				<p th:errors="*{name}"></p>
 			</div>
-			<div>
-				<label>Matrícula:</label> <input type="text"
+			<div class="input-field col s12 m6">
+				<label>Matrícula</label> <input type="text"
 					th:field="*{registration}">
 				<p th:errors="*{registration}"></p>
 			</div>
-			<div class="input-field col s12">
+			<div class="input-field col s12 m6">
 				<select th:field="*{clazz}">
-					<option value="" selected>Escolha uma turma</option>
+					<option value="">Escolha uma turma</option>
 					<option th:each="c : ${clazzs}" th:value="${c.id}" th:text="${c.name}">ADMINT1M</option>
-				</select> <label>Materialize Select</label>
+				</select> <label>Turma</label>
 				<p th:errors="*{clazz}"></p>
 			</div>
-			<div>
+			<div class="col s12">
 				<button class="waves-effect waves-light btn" type="submit">Salvar</button>
 				<button class="waves-effect waves-light btn" type="reset">Limpar</button>
+			</div>
 			</div>
 		</form>
 	</div>

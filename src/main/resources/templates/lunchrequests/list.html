@@ -19,15 +19,15 @@
 		<h3>Solicitações de almoço</h3>
 
 		<form th:action="@{/lunchrequests}">
-			<div class="row valign-wrapper">
+			<div class="row">
 				<div class="input-field col s6 m3">
 					<input id="lunchRequestDate" type="date" name="lunchRequestDate"
 						th:value="${lunchRequestDate}"> <label
 						for="lunchRequestDate">Data</label>
 				</div>
-				<div class="col s6 m9">
+				<div class="input-field col s6 m9">
 					<button class="btn waves-effect waves-light" type="submit">
-						Submit <i class="material-icons right">send</i>
+						Filtrar <i class="material-icons right">send</i>
 					</button>
 				</div>
 			</div>
