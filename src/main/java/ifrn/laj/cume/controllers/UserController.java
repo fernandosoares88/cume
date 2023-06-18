@@ -1,6 +1,7 @@
 package ifrn.laj.cume.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,7 +11,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ifrn.laj.cume.dtos.UserChangePasswordDTO;
@@ -26,13 +26,13 @@ public class UserController {
 	private UserRepository ur;
 
 	@GetMapping("/changepassword")
+	@PreAuthorize("isAuthenticated()")
 	public String formChangePass(UserChangePasswordDTO userChangePasswordDTO) {
-//		ModelAndView md = new ModelAndView("users/changepassword");
-//		md.addObject("userDTO", userDTO);
 		return "users/changepassword";
 	}
 
 	@PostMapping("/changepassword")
+	@PreAuthorize("isAuthenticated()")
 	public String changePass(@Valid UserChangePasswordDTO userDTO, BindingResult result,
 			RedirectAttributes attributes) {
 		

@@ -16,7 +16,22 @@
 	<div th:replace="~{menu :: menu}"></div>
 
 	<div class="container">
-		<h3>Solicitações de almoço para hoje:</h3>
+		<h3>Solicitações de almoço</h3>
+
+		<form th:action="@{/lunchrequests}">
+			<div class="row valign-wrapper">
+				<div class="input-field col s6 m3">
+					<input id="lunchRequestDate" type="date" name="lunchRequestDate"
+						th:value="${lunchRequestDate}"> <label
+						for="lunchRequestDate">Data</label>
+				</div>
+				<div class="col s6 m9">
+					<button class="btn waves-effect waves-light" type="submit">
+						Submit <i class="material-icons right">send</i>
+					</button>
+				</div>
+			</div>
+		</form>
 
 		<table class="highlight">
 
@@ -54,6 +69,9 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('.sidenav').sidenav();
+		});
+		$(document).ready(function() {
+			$('.datepicker').datepicker();
 		});
 	</script>
 </body>
