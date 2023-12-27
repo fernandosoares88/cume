@@ -6,8 +6,8 @@ Para executar a aplicação na sua própria máquina, execute as seguintes instr
 > 'create database cume;'
 
 3. Altere a configuração de senha do banco no arquivo 'Application.properties'.
-4. Execute a aplicação para a criação automática das tabelas do banco de dados.
-5. Execute os seguintes comandos no seu banco de dados para criação dos dados básicos necessários. Esses comandos criam um usuário administrador com matrícula 'admin' e senha '123'.
+4. Execute a aplicação para a criação automática das tabelas do banco de dados para corresponder a senha que você utiliza no banco de dados instalado na sua máquina.
+5. Execute os seguintes comandos na sua aplicação de banco de dados para criar os dados básicos necessários. Esses comandos criam um usuário administrador com matrícula 'admin' e senha '123'.
 
 > use cume;
 > 
