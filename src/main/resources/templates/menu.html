@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
 <head>
-<meta charset="UTF-8">
+	<meta charset="UTF-8">
 </head>
+
 <body>
 	<div th:fragment="menu">
 		<nav>
@@ -16,34 +17,29 @@
 					<i class="material-icons">menu</i>
 				</a>
 				<ul class="right hide-on-med-and-down">
-					<li sec:authorize="hasRole('STUDENT')"><a
-							th:href="@{/lunchrequests/form}">Solicitar Almoço</a></li>
-					<li sec:authorize="hasAnyRole('ADMIN', 'ASAES', 'COORD')"><a
-							th:href="@{/students}">Alunos</a></li>
-					<li sec:authorize="hasRole('ADMIN')"><a
-							th:href="@{/publicservers}">Servidores</a></li>
+					<li sec:authorize="hasRole('STUDENT')"><a th:href="@{/lunchrequests/form}">Solicitar Almoço</a></li>
+					<li sec:authorize="hasAnyRole('ADMIN', 'ASAES', 'COORD')"><a th:href="@{/students}">Alunos</a></li>
+					<li sec:authorize="hasRole('ADMIN')"><a th:href="@{/publicservers}">Servidores</a></li>
 					<li sec:authorize="hasAnyRole('ADMIN', 'ASAES', 'COORD')"><a
 							th:href="@{/lunchrequests}">Solicitações</a></li>
-					<li sec:authorize="isAuthenticated()"><a
-							th:href="@{/users/changepassword}">Alterar Senha</a></li>
+					<li sec:authorize="hasAnyRole('ADMIN')"><a
+							th:href="@{/classes}">Turmas</a></li>
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/users/changepassword}">Alterar Senha</a></li>
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Sair</a></li>
 				</ul>
 			</div>
 		</nav>
 
 		<ul class="sidenav" id="mobile-demo">
-			<li sec:authorize="hasRole('STUDENT')"><a
-					th:href="@{/lunchrequests/form}">Solicitar Almoço</a></li>
-			<li sec:authorize="hasAnyRole('ADMIN', 'ASAES', 'COORD')"><a
-					th:href="@{/students}">Alunos</a></li>
-			<li sec:authorize="hasRole('ADMIN')"><a
-					th:href="@{/publicservers}">Servidores</a></li>
-			<li sec:authorize="hasAnyRole('ADMIN', 'ASAES', 'COORD')"><a
-					th:href="@{/lunchrequests}">Solicitações</a></li>
-			<li sec:authorize="isAuthenticated()"><a
-					th:href="@{/users/changepassword}">Alterar Senha</a></li>
+			<li sec:authorize="hasRole('STUDENT')"><a th:href="@{/lunchrequests/form}">Solicitar Almoço</a></li>
+			<li sec:authorize="hasAnyRole('ADMIN', 'ASAES', 'COORD')"><a th:href="@{/students}">Alunos</a></li>
+			<li sec:authorize="hasRole('ADMIN')"><a th:href="@{/publicservers}">Servidores</a></li>
+			<li sec:authorize="hasAnyRole('ADMIN', 'ASAES', 'COORD')"><a th:href="@{/lunchrequests}">Solicitações</a>
+			</li>
+			<li sec:authorize="isAuthenticated()"><a th:href="@{/users/changepassword}">Alterar Senha</a></li>
 			<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Sair</a></li>
 		</ul>
 	</div>
 </body>
+
 </html>
